@@ -1,0 +1,37 @@
+# Node bağımlılıkları
+/node_modules/
+
+# Build çıktısı (Vite default)
+/dist/
+/build/
+
+# Ortam değişkenleri
+.env
+.env.*.local
+
+# Log dosyaları
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Editör / IDE geçici dosyaları
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# TypeScript cache / build info
+*.tsbuildinfo
+
+# Test coverage
+/coverage/
+
+# Vite önbellek
+/.vite/
+
+# Diğer geçici dosyalar
+*.tmp
