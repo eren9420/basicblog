@@ -1,49 +1,24 @@
-// src/pages/HomePage.tsx
-import React, { useState, useEffect } from 'react';
-import { Typography, Box, CircularProgress } from '@mui/material';
-import { getAllPostSummaries } from '../lib/posts';
-import { PostSummary } from '../types';
-import PostCard from '../components/Blog/PostCard';
+import { Container, Grid, Box, Typography } from '@mui/material';
+import PostCard from '../components/Blog/Postcard';
+import { useBlogContext } from '../contexts/BlogContext';
 
-const HomePage: React.FC = () => {
-  const [posts, setPosts] = useState<PostSummary[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    try {
-      const fetchedPosts = getAllPostSummaries();
-      setPosts(fetchedPosts);
-    } catch (err) {
-      console.error("Error fetching posts:", err);
-      setError("Yazılar yüklenirken bir hata oluştu.");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  if (loading) {
-    return <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}><CircularProgress /></Box>;
-  }
-
-  if (error) {
-    return <Typography color="error" align="center">{error}</Typography>;
-  }
+export default function HomePage() {
+  const { posts } = useBlogContext();
 
   return (
-    <Box>
-      <Typography variant="h4" component="h1" gutterBottom align="center">
-        Son Yazılar
-      </Typography>
-      {posts.length === 0 ? (
-         <Typography align="center">Henüz hiç yazı yayınlanmamış.</Typography>
-      ) : (
-        posts.map((post) => (
-          <PostCard key={post.slug} post={post} />
-        ))
-      )}
-    </Box>
-  );
-};
+    <>
+      <Box sx={{ py: 8, backgroundColor: 'background.paper', textAlign: 'center' }}>
+        <Typography variant="h1" gutterBottom>Welcome to Physics Insights</Typography>
+        <Typography variant="h5" color="text.secondary">Dive into quantum mechanics, relativity and beyond.</Typography>
+      </Box>
 
-export default HomePage;
+      <Container maxWidth="lg" sx={{ py: 6 }}>
+        <Grid container spacing={4}>
+          {posts.map(post => (
+            <Grid key={post.slug} item xs={12} sm={6} md={4}><PostCard post={post} /></Grid>
+          ))}
+        </Grid>
+      </Container>
+    </>
+  );
+}

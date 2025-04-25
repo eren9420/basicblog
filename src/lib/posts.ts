@@ -1,6 +1,6 @@
 // src/lib/posts.ts
 import matter from 'gray-matter';
-import { Post, PostFrontMatter, PostSummary } from '../types';
+import { Post, PostFrontMatter, PostSummary, PostMeta } from '../types';
 
 // Vite'ın glob import özelliği ile posts klasöründeki tüm md dosyalarını al
 // eager: true -> dosyaları hemen yükler ve modül içeriğini verir
@@ -58,3 +58,8 @@ export function getPostBySlug(slug: string): Post | null {
     content,
   };
 }
+
+export const posts: PostMeta[] = [
+  { slug: "first-post", title: "Hello world", date: "2025-04-01" },
+  // …etc
+]

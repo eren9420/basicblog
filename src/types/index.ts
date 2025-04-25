@@ -16,3 +16,11 @@ export interface PostFrontMatter {
   export interface PostSummary extends PostFrontMatter {
      slug: string;
   }
+
+  export interface PostMeta {
+    slug:   string
+    title:  string
+    date:   string
+    excerpt?: string
+    // …any other fields you need
+  }

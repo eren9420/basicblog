@@ -1,34 +1,19 @@
-// src/components/Blog/PostCard.tsx
-import React from 'react';
-import { Card, CardContent, Typography, CardActionArea } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
-import { format } from 'date-fns'; // Tarih formatlama için
-import { PostSummary } from '../../types';
+import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { PostMeta } from '../../types';
 
-interface PostCardProps {
-  post: PostSummary;
-}
+interface PostCardProps { post: PostMeta; }
 
-const PostCard: React.FC<PostCardProps> = ({ post }) => {
-  const formattedDate = format(new Date(post.date), 'dd MMMM yyyy'); // Türkçe format için date-fns locale eklemek gerekebilir
-
+export default function PostCard({ post }: PostCardProps) {
   return (
-    <Card sx={{ mb: 3 }}>
-      <CardActionArea component={RouterLink} to={`/post/${post.slug}`}>
+    <Card sx={{ maxWidth: 345, transition: 'transform .2s', '&:hover': { transform: 'scale(1.05)' } }}>
+      <CardActionArea component={Link} to={`/posts/${post.slug}`}>  
         <CardContent>
-          <Typography variant="h5" component="div" gutterBottom>
-            {post.title}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {formattedDate} {post.author && `- ${post.author}`}
-          </Typography>
-          <Typography variant="body2">
-            {post.excerpt}
-          </Typography>
+          <Typography gutterBottom variant="h5">{post.title}</Typography>
+          <Typography variant="body2" color="text.secondary" paragraph>{post.excerpt}</Typography>
+          <Typography variant="caption" color="text.secondary">{new Date(post.date).toLocaleDateString()}</Typography>
         </CardContent>
       </CardActionArea>
     </Card>
   );
-};
-
-export default PostCard;
+}

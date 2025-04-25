@@ -1,61 +1,41 @@
 // src/styles/theme.ts
 import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 
-// Temel bir tema oluşturun
-const theme = createTheme({
+export const lightTheme = createTheme({
   palette: {
-    mode: 'light', // 'light' veya 'dark' olabilir
-    primary: {
-      main: '#1976d2', // Örnek mavi renk
-    },
-    secondary: {
-      main: '#dc004e', // Örnek pembe renk
-    },
-    error: {
-      main: red.A400,
-    },
+    mode: 'light',
+    primary:   { main: '#556cd6' },
+    secondary: { main: '#19857b' },
     background: {
-      default: '#f4f6f8', // Açık tema için arka plan rengi
-      paper: '#ffffff',   // Kartlar, menüler vb. için kağıt rengi
-    },
+      default: '#f5f7fa',
+      paper:   '#ffffff'
+    }
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h1: { fontSize: '2.5rem', fontWeight: 500 },
-    h2: { fontSize: '2rem', fontWeight: 500 },
-    // ... diğer tipografi ayarları
-  },
-  // Diğer tema özelleştirmeleri (spacing, breakpoints, components defaults vb.)
+    fontFamily: 'Inter, sans-serif',
+    h1: { fontSize: '3rem', fontWeight: 700 },
+    h2: { fontSize: '2.25rem', fontWeight: 600 },
+    h5: { fontWeight: 600 }
+  }
 });
 
 export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
-    primary: {
-        main: '#90caf9', // Koyu tema için mavi
-    },
-    secondary: {
-        main: '#f48fb1', // Koyu tema için pembe
-    },
-    error: {
-        main: red.A400,
-    },
+    primary:   { main: '#90caf9' },
+    secondary: { main: '#f48fb1' },
     background: {
-        default: '#121212', // Koyu tema arka plan
-        paper: '#1e1e1e',    // Koyu tema kağıt
-    },
-    text: {
-        primary: '#ffffff',
-        secondary: 'rgba(255, 255, 255, 0.7)',
+      default: '#121212',
+      paper:   '#1d1d1d'
     }
   },
-   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h1: { fontSize: '2.5rem', fontWeight: 500 },
-    h2: { fontSize: '2rem', fontWeight: 500 },
-  },
+  typography: {
+    fontFamily: 'Inter, sans-serif',
+    h1: { fontSize: '3rem', fontWeight: 700 },
+    h2: { fontSize: '2.25rem', fontWeight: 600 },
+    h5: { fontWeight: 600 }
+  }
 });
 
-
-export default theme; // Varsayılan olarak açık temayı dışa aktar
+// ↓ Varsayılan olarak lightTheme’i export et
+export default lightTheme;

@@ -1,27 +1,22 @@
-// src/components/Layout/Header.tsx
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom'; // React Router Link'i
+import { AppBar, Toolbar, Container, Typography, IconButton, useTheme } from '@mui/material';
+import { LightMode, DarkMode } from '@mui/icons-material';
 
-const Header: React.FC = () => {
+interface HeaderProps { toggleColorMode: () => void; }
+
+export function Header({ toggleColorMode }: HeaderProps) {
+  const theme = useTheme();
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" component={RouterLink} to="/" sx={{ flexGrow: 1, color: 'inherit', textDecoration: 'none' }}>
-          Fizikçinin Blogu
-        </Typography>
-        <Box>
-          <Button color="inherit" component={RouterLink} to="/">
-            Ana Sayfa
-          </Button>
-          <Button color="inherit" component={RouterLink} to="/about">
-            Hakkında
-          </Button>
-          {/* İleride eklenebilecekler: Kategoriler, Arama, Tema Değiştirici */}
-        </Box>
-      </Toolbar>
+    <AppBar position="sticky" elevation={4} color="primary">
+      <Container maxWidth="lg">
+        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+          <Typography component="a" href="/" sx={{ textDecoration: 'none', color: 'inherit', fontWeight: 700, fontSize: '1.5rem' }}>
+            Physics Blog
+          </Typography>
+          <IconButton onClick={toggleColorMode} color="inherit">
+            {theme.palette.mode === 'dark' ? <LightMode /> : <DarkMode />}
+          </IconButton>
+        </Toolbar>
+      </Container>
     </AppBar>
   );
-};
-
-export default Header;
+}
